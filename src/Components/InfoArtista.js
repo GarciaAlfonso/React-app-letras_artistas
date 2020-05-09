@@ -6,7 +6,7 @@ const InfoArtista = ({infoArtista}) => {
        const {strArtistThumb, strGenre, strBiographyES } = infoArtista;
 
     return ( 
-        Object.keys(infoArtista).length !== 0 && (
+        Object.keys(infoArtista).length !== 0 && ( //Comprueba si el objeto está vacio, si es así no muestra el componente
 
             <div className="card border-light">
                 <div className="card-header bg-primary text-light font-weight-bold">

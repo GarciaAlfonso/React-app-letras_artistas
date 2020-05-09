@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 
-const Formulario = ({setBusquedaLetra}) => {
+const Formulario = ({setBusquedaLetra, setCargando}) => {
 
     //state con los datos del formulario
     const [busqueda, setBusqueda] = useState({
@@ -34,6 +34,14 @@ const Formulario = ({setBusquedaLetra}) => {
             setError(true)
             return;
         }
+        //activa el spinner
+        setCargando(true);
+
+        setTimeout(() => {//muestra el spinner por un lapso de tiempo de 3 segundos
+        
+            setCargando(false);//desactiva el spinner
+       
+        }, 3000);
 
         setBusquedaLetra(busqueda);
         setError(false);

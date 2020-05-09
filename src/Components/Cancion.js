@@ -2,16 +2,17 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 const Cancion = ({letra}) => {
-
-    if(letra === ''){
-        return null;
-    }
+    
     
     return (
-        <Fragment>
+        
+        letra !== '' && ( //comprueba si letra está vacia, si es asi no muestra el componente
+            <Fragment>
             <h2>Letra Canción</h2>
             <p className="letra">{letra}</p>
-        </Fragment>     
+        </Fragment>
+        )
+             
     );
 }
 

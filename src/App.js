@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import Formulario from './Components/Formulario';
 import Cancion from './Components/Cancion';
 import InfoArtista from './Components/InfoArtista';
+import Spinner from './Components/Spinner';
 
 import axios from 'axios';
 
@@ -18,6 +19,10 @@ function App() {
 
   const [infoArtista, setInfoArtista] = useState({});
 
+  //State para el spinner
+
+  const [cargando, setCargando] = useState(false);
+
   useEffect(() => {
 
     if(Object.keys(busquedaLetra).length === 0) return; //Comprueba si el objeto devuelto está vacio
@@ -33,12 +38,11 @@ function App() {
         axios(url1),
         axios(url2)
       ]);
-      
+
       setLetra(letra.data.lyrics);
       
       info.data.artists[0] !== 0 && (
-         setInfoArtista(info.data.artists[0])
-      )
+        setInfoArtista(info.data.artists[0]))
       
     }
 
@@ -50,7 +54,10 @@ function App() {
     <Fragment>
       <Formulario
         setBusquedaLetra={setBusquedaLetra}
+        setCargando={setCargando}
       />
+
+      {cargando && <Spinner/>}
 
       <div className="container mt-5">
         <div className="row">
@@ -62,6 +69,7 @@ function App() {
           <div className="col-md-6">
             <Cancion
               letra={letra}
+              
             />
           </div>
         </div>
